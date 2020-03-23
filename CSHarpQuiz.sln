@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHarpQuizConsole", "CSHarpQuizConsole\CSHarpQuizConsole.csproj", "{DC6C5440-CFC4-4F11-9136-C72AFE9DEDCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC6C5440-CFC4-4F11-9136-C72AFE9DEDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6C5440-CFC4-4F11-9136-C72AFE9DEDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6C5440-CFC4-4F11-9136-C72AFE9DEDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6C5440-CFC4-4F11-9136-C72AFE9DEDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EBEEF57-CD3A-441C-87E7-EC7F83962DB1}
+	EndGlobalSection
+EndGlobal
