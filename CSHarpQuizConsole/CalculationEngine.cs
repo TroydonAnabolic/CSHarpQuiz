@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace CSHarpQuizConsole
 {
@@ -14,10 +10,11 @@ namespace CSHarpQuizConsole
         public void CalculateScore(List<string> argQuestions, List<string> argAnswerListCorrect, List<string> argAnswerListIncorrect1, List<string> argAnswerListIncorrect2, List<string> argAnswerListIncorrect3)
         {
             Random rnd = new Random();
-            string myAnswer = string.Empty;
+            int score = 0, correctOption = 0, mySelectedOption = 0;
 
             for (int i = 0; i < argQuestions.Count; i++)
             {
+                // Ask the question
                 Console.WriteLine(argQuestions[i]);
 
                 // creates a list which will be possibly shuffled for each instance, so the answers location is constantly different so the user cannot pickup the pattern
@@ -34,91 +31,69 @@ namespace CSHarpQuizConsole
                     switch (k)
                     {
                         case 0:
-                            Console.WriteLine(possibleAnswers[randomList[0]]);
+                            // print out proposed answer
+                            Console.WriteLine($"\nOption 1: {possibleAnswers[randomList[0]]}\n");
+                            // if this instance is the correct answer then assign it correctOption with the corresponding value
+                            if (possibleAnswers[randomList[0]].Equals(argAnswerListCorrect[i])) correctOption = 1;
                             break;
                         case 1:
-                            Console.WriteLine(possibleAnswers[randomList[1]]);
+                            Console.WriteLine($"Option 2: {possibleAnswers[randomList[1]]}\n");
+                            if (possibleAnswers[randomList[1]].Equals(argAnswerListCorrect[i])) correctOption = 2;
                             break;
                         case 2:
-                            Console.WriteLine(possibleAnswers[randomList[2]]);
+                            Console.WriteLine($"Option 3: {possibleAnswers[randomList[2]]}\n");
+                            if (possibleAnswers[randomList[2]].Equals(argAnswerListCorrect[i])) correctOption = 3;
                             break;
                         case 3:
-                            Console.WriteLine(possibleAnswers[randomList[3]]);
+                            Console.WriteLine($"Option 4: {possibleAnswers[randomList[3]]}\n");
+                            if (possibleAnswers[randomList[3]].Equals(argAnswerListCorrect[i])) correctOption = 4;
                             break;
-
                     }
-                    //Console.WriteLine(possibleAnswers[randomList[k]], possibleAnswers[randomList[1]], possibleAnswers[randomList[2]], possibleAnswers[randomList[3]]);
                 }
 
-                //Console.WriteLine($"{argAnswerListCorrect[i]}, {argAnswerListIncorrect2[i]}, {argAnswerListIncorrect1[i]}, {argAnswerListIncorrect3[i]}");
-                // Console.WriteLine("{0} ", argAnswerListCorrect[i], argAnswerListIncorrect1[i], argAnswerListIncorrect2[i], argAnswerListIncorrect3[i]);
-                Console.ReadLine();
+                Console.WriteLine("\nWhich Option is correct?");
 
+                // if possible answer is the correct one then we will increase the score
+                mySelectedOption = ConvertToInteger(Console.ReadLine());
+                // each time i select the correct option I am increasing the score
+                if (mySelectedOption == correctOption)
+                {
+                    Console.WriteLine($"\nGood work! Your current Score is: {score}");
+                    score++;
+                }
+                else Console.WriteLine($"\nSorry that is incorrect, your current score is: {score}");
+                // if a user selects
             }
             // Present the result (counter) to the user
+            Console.WriteLine($"\nGame Over! Your current Score is: {score}!"); 
+            // TODO: Implement more quizzes for C# SQL ASP.NET JavaScript HTML and CSS, and use interpolation to show which quiz was completed
         }
 
-        public static void RandomizePosition(string argCorrect, string argIncorr1, string argIncorr2, string argIncorr3)
-        {
-          
-
-
-        }
-
-        // Create a list of 4 random numbers
+        // Create a list of 4 random numbers method
         public static List<int> NewNumber(List<int> argRandList)
         {
             Random a = new Random();
             int MyNumber = 0;
 
-            while(argRandList.Count  < 5) // keep adding numbers to the list until we have 4 numbers in the list
+            while (argRandList.Count < 5) // keep adding numbers to the list until we have 4 numbers in the list
             {
 
-            MyNumber = a.Next(0, 4);
-            if (!argRandList.Contains(MyNumber))
-                argRandList.Add(MyNumber);
+                MyNumber = a.Next(0, 4);
+                if (!argRandList.Contains(MyNumber))
+                    argRandList.Add(MyNumber);
                 if (argRandList.Count == 4) break;
             }
             return argRandList;
-
         }
-    }
 
-    public static class ThreadSafeRandom
-    {
-        [ThreadStatic] private static Random Local;
-
-        public static Random ThisThreadsRandom
+        // fast custom method to convert a string to an integer
+        public static int ConvertToInteger(string argStringToConvert)
         {
-            get { return Local ?? (Local = new Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId))); }
+            var temp = 0;
+            for (int i = 0; i < argStringToConvert.Length; i++)
+                temp = temp * 10 + (argStringToConvert[i] - '0');
+
+            return temp;
         }
-    }
-
-    static class MyExtensions
-    {
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            // get the number of items in the list
-            int n = list.Count;
-
-            // while the number of elements is more than 1 we can shuffle
-            while (n > 1)
-            {
-                // decrement until we have only one element
-                n--;
-
-                // get a threadsafe random, which is the number before the decrement
-                int k = ThreadSafeRandom.ThisThreadsRandom.Next(n + 1);
-
-                // swap the first number with a random number
-                // depending on the type used, assign the type and its value with the next element
-                T value = list[k];
-                // get the instance value of this next value and assign swap with the decremented value
-                list[k] = list[n];
-
-                list[n] = value;
-            }
-        }
-
     }
 }
