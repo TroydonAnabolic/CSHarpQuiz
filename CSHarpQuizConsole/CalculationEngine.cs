@@ -60,18 +60,18 @@ namespace CSHarpQuizConsole
                 {
                     score++;
                     Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
-                        $"\nGood work! Your current Score is: {score}\n" +
+                        $"\nGood work! Your current Score is: {score} out of {argQuestions.Count}\n" +
                         $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
                 }
                 else Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
-                    $"\nSorry that is incorrect, your current score is: {score}\n" +
+                    $"\nSorry that is incorrect, your current score is: {score} out of {argQuestions.Count}\n" +
                     $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
                 // if a user selects
             }
             // Present the result (counter) to the user
             Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
                 $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
-                $"Game Over! Your current Score is: {score}!" +
+                $"Game Over! Your final Score is: {score} out of {argQuestions.Count}!" +
                 $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
                 $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"); 
             // TODO: Implement more quizzes for C# SQL ASP.NET JavaScript HTML and CSS, and use interpolation to show which quiz was completed
