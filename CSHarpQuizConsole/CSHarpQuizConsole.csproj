@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharpQuestionAndAnswer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionAndAnswers.cs" />
+    <Compile Include="CalculationEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
