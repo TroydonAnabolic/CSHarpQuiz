@@ -11,6 +11,7 @@ namespace CSHarpQuizConsole
         {
             Random rnd = new Random();
             int score = 0, correctOption = 0, mySelectedOption = 0;
+            HashSet<string> grade = new HashSet<string> { "A-", "A", "A+", "B-", "B", "B+", "C-", "D-", "D", "D+" }; // TO DO: Implement grades based on percentage
 
             for (int i = 0; i < argQuestions.Count; i++)
             {
@@ -71,7 +72,7 @@ namespace CSHarpQuizConsole
             // Present the result (counter) to the user
             Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
                 $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
-                $"Game Over! Your final Score is: {score} out of {argQuestions.Count}!" +
+                $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {score/argQuestions.Count*100}%" +
                 $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
                 $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"); 
             // TODO: Implement more quizzes for C# SQL ASP.NET JavaScript HTML and CSS, and use interpolation to show which quiz was completed
