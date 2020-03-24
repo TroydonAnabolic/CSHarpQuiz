@@ -58,14 +58,22 @@ namespace CSHarpQuizConsole
                 // each time i select the correct option I am increasing the score
                 if (mySelectedOption == correctOption)
                 {
-                    Console.WriteLine($"\nGood work! Your current Score is: {score}");
                     score++;
+                    Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
+                        $"\nGood work! Your current Score is: {score}\n" +
+                        $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
                 }
-                else Console.WriteLine($"\nSorry that is incorrect, your current score is: {score}");
+                else Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
+                    $"\nSorry that is incorrect, your current score is: {score}\n" +
+                    $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
                 // if a user selects
             }
             // Present the result (counter) to the user
-            Console.WriteLine($"\nGame Over! Your current Score is: {score}!"); 
+            Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
+                $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
+                $"Game Over! Your current Score is: {score}!" +
+                $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
+                $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"); 
             // TODO: Implement more quizzes for C# SQL ASP.NET JavaScript HTML and CSS, and use interpolation to show which quiz was completed
         }
 

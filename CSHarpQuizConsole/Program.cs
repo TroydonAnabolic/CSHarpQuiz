@@ -17,7 +17,6 @@ namespace CSHarpQuizConsole
             calculation.CalculateScore(cSharpQuestionAndAnswer.questionsList, cSharpQuestionAndAnswer.answerListCorrect,
                 cSharpQuestionAndAnswer.answerListIncorrect1, cSharpQuestionAndAnswer.answerListIncorrect2, cSharpQuestionAndAnswer.answerListIncorrect3);
 
-            
         }
     }
 }
