@@ -44,12 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSharpQuestionAndAnswer.cs" />
+    <Compile Include="Engines\PlayGameMethods.cs" />
+    <Compile Include="HtmlQuestionAndAnswers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CalculationEngine.cs" />
+    <Compile Include="Engines\CalculationEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NetworkingQuizzes\" />
+    <Folder Include="ProgrammingQuizzes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
