@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="CSharpQuestionAndAnswer.cs" />
     <Compile Include="Engines\PlayGameMethods.cs" />
     <Compile Include="HtmlQuestionAndAnswers.cs" />

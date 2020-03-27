@@ -7,7 +7,9 @@ namespace CSHarpQuizConsole
     {
 
 
-        public void CalculateScore(List<string> argQuestions, List<string> argAnswerListCorrect, List<string> argAnswerListIncorrect1, List<string> argAnswerListIncorrect2, List<string> argAnswerListIncorrect3)
+        public void CalculateScore(
+            List<string> argQuestions, List<string> argAnswerListCorrect, List<string> argAnswerListIncorrect1,
+            List<string> argAnswerListIncorrect2, List<string> argAnswerListIncorrect3)
         {
             try
             {
@@ -21,8 +23,7 @@ namespace CSHarpQuizConsole
 
                 for (int i = 0; i < argQuestions.Count; i++)
                 {
-                    Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
-                        $"Question {i + 1}: {argQuestions[i]}");
+                    Console.WriteLine($"Question {i + 1}: {argQuestions[i]}");
 
                     // creates a list which will be possibly shuffled for each instance, so the answers location is constantly different so the user cannot pickup the pattern
                     List<string> possibleAnswers = new List<string>() { argAnswerListCorrect[i], argAnswerListIncorrect1[i], argAnswerListIncorrect2[i], argAnswerListIncorrect3[i] };
@@ -67,13 +68,9 @@ namespace CSHarpQuizConsole
                     if (mySelectedOption == correctOption)
                     {
                         score++;
-                        Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
-                            $"\nGood work! Your current Score is: {score} out of {argQuestions.Count}\n" +
-                            $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
+                        Console.WriteLine($"{Constants.horizontalRule}Good work! Your current Score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
                     }
-                    else Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
-                        $"\nSorry that is incorrect, your current score is: {score} out of {argQuestions.Count}\n" +
-                        $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
+                    else Console.WriteLine($"{Constants.horizontalRule}Sorry that is incorrect, your current score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
                     // if a user selects
                 }
                 percentage = score / argQuestions.Count * 100;
@@ -81,16 +78,12 @@ namespace CSHarpQuizConsole
                 else if (percentage > 50) face = ":)";
                 else face = ":(";
                 // Present the result (counter) to the user TODO: change int to double to avoid getting 0 error.
-                Console.WriteLine($"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
-                    $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n" +
-                    $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {percentage}% {face} " +
-                    $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────" +
-                    $"────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-                // TODO: Implement more quizzes for C# SQL ASP.NET JavaScript HTML and CSS, and use interpolation to show which quiz was completed
+                Console.WriteLine($"{Constants.horizontalRule}{Constants.horizontalRule}" +
+                    $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {percentage}% {face}" +
+                    $"{Constants.horizontalRule}{Constants.horizontalRule}");
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
@@ -115,18 +108,26 @@ namespace CSHarpQuizConsole
         // Override Random number generator to shuffle the questions order based on number of questions
         public static List<int> GenerateRandomNumberList(List<int> argRandList, int argNumberOfQuestions)
         {
-            Random a = new Random();
-            int myNumber = 0;
-
-            while (argRandList.Count < argNumberOfQuestions + 1) // keep adding numbers to the list until we have the total number of questions assigned random indexes
+            try
             {
+                Random a = new Random();
+                int myNumber = 0;
 
-                myNumber = a.Next(0, argNumberOfQuestions);
-                if (!argRandList.Contains(myNumber))
-                    argRandList.Add(myNumber);
-                if (argRandList.Count == argNumberOfQuestions) break;
+                while (argRandList.Count < argNumberOfQuestions + 1) // keep adding numbers to the list until we have the total number of questions assigned random indexes
+                {
+
+                    myNumber = a.Next(0, argNumberOfQuestions);
+                    if (!argRandList.Contains(myNumber))
+                        argRandList.Add(myNumber);
+                    if (argRandList.Count == argNumberOfQuestions) break;
+                }
+                return argRandList;
             }
-            return argRandList;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         // fast custom method to convert a string to an integer

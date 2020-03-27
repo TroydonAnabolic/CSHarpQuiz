@@ -8,10 +8,13 @@ namespace CSHarpQuizConsole.Engines
 {
     public class PlayGameMethods
     {
-        public void PlayGame(CSharpQuestionAndAnswer cSharpQuestionAndAnswer, CalculationEngine calculation)
+        public static readonly IList<string> gameList = new List<string> { "HTML", "CSS", "JAVASCRIPT", "C#", "ASP.NET", "SQL", "NETWORKING", "EXIT" }.AsReadOnly();
+
+
+    public void PlayGame(CSharpQuestionAndAnswer cSharpQuestionAndAnswer, CalculationEngine calculation)
         {
+
             var selectGame = string.Empty;
-            List<string> gameList = new List<string>() { "HTML", "CSS", "JAVASCRIPT", "C#", "ASP.NET", "SQL", "NETWORKING", "EXIT" };
             bool exitToMenu = false;
             do
             {
@@ -22,33 +25,33 @@ namespace CSHarpQuizConsole.Engines
                 switch (selectGame.ToUpper())
                 {
                     case "HTML":
-                        Console.WriteLine($"Welcome to the {gameList[0]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[0]} Game!");
                         break;
                     case "CSS":
-                        Console.WriteLine($"Welcome to the {gameList[1]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[1]} Game!");
                         break;
                     case "JAVASCRIPT":
-                        Console.WriteLine($"Welcome to the {gameList[2]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[2]} Game!");
                         break;
                     case "C#":
-                        Console.WriteLine($"Welcome to the {gameList[3]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[3]} Game!");
                         PlayCsharpGame(cSharpQuestionAndAnswer, calculation);
                         break;
                     case "ASP.NET":
-                        Console.WriteLine($"Welcome to the {gameList[4]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[4]} Game!");
                         break;
                     case "SQL":
-                        Console.WriteLine($"Welcome to the {gameList[5]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[5]} Game!");
                         break;
                     case "NETWORKING":
-                        Console.WriteLine($"Welcome to the {gameList[6]} Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[6]} Game!");
                         break;
                     case "EXIT":
-                        Console.WriteLine($"Exited Game!");
+                        Console.WriteLine($"{Constants.horizontalRule}Exited Game!");
                         exitToMenu = true;
                         break;
                     default:
-                        Console.WriteLine("Cannot find game with that name, please check it is on the list, and is spelt correctly");
+                        Console.WriteLine("{Constants.horizontalRule}Cannot find game with that name, please check it is on the list, and is spelt correctly");
                         break;
                 }
 
