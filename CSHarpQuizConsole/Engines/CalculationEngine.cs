@@ -9,7 +9,8 @@ namespace CSHarpQuizConsole
 
         public void CalculateScore(
             List<string> argQuestions, List<string> argAnswerListCorrect, List<string> argAnswerListIncorrect1,
-            List<string> argAnswerListIncorrect2, List<string> argAnswerListIncorrect3)
+            List<string> argAnswerListIncorrect2, List<string> argAnswerListIncorrect3
+            )
         {
             try
             {
@@ -17,16 +18,21 @@ namespace CSHarpQuizConsole
                 int correctOption = 0, mySelectedOption = 0;
                 decimal score = 0, percentage = 0;
                 HashSet<string> grade = new HashSet<string> { "A-", "A", "A+", "B-", "B", "B+", "C-", "D-", "D", "D+" }; // TO DO: Implement grades based on percentage
+                // create lists of list trings
                 string face = string.Empty;
                 // Ask the question
                 // TODO: Shuffle all questions
+                List<int> randomListForQuestions = new List<int>(); // create empty random list
+                GenerateRandomNumberList(randomListForQuestions, argQuestions.Count); // create a list of random numbers based on size of questions array
+
 
                 for (int i = 0; i < argQuestions.Count; i++)
                 {
-                    Console.WriteLine($"Question {i + 1}: {argQuestions[i]}");
+                    Console.WriteLine($"Question {i + 1}: {argQuestions[randomListForQuestions[i]]}"); // ask a question using the instance of the random list of numbers as the indexer
 
                     // creates a list which will be possibly shuffled for each instance, so the answers location is constantly different so the user cannot pickup the pattern
-                    List<string> possibleAnswers = new List<string>() { argAnswerListCorrect[i], argAnswerListIncorrect1[i], argAnswerListIncorrect2[i], argAnswerListIncorrect3[i] };
+                    List<string> possibleAnswers = new List<string>() { argAnswerListCorrect[randomListForQuestions[i]], argAnswerListIncorrect1[randomListForQuestions[i]],
+                        argAnswerListIncorrect2[randomListForQuestions[i]], argAnswerListIncorrect3[randomListForQuestions[i]] };
 
                     // Creates a list of 4 random numbers in each instance of the questions list
                     List<int> randomList = new List<int>();
@@ -43,19 +49,19 @@ namespace CSHarpQuizConsole
                                 // print out proposed answer
                                 Console.WriteLine($"\nOption 1: {possibleAnswers[randomList[0]]}\n");
                                 // if this instance is the correct answer then assign it correctOption with the corresponding value
-                                if (possibleAnswers[randomList[0]].Equals(argAnswerListCorrect[i])) correctOption = 1;
+                                if (possibleAnswers[randomList[0]].Equals(argAnswerListCorrect[randomListForQuestions[i]])) correctOption = 1;
                                 break;
                             case 1:
                                 Console.WriteLine($"Option 2: {possibleAnswers[randomList[1]]}\n");
-                                if (possibleAnswers[randomList[1]].Equals(argAnswerListCorrect[i])) correctOption = 2;
+                                if (possibleAnswers[randomList[1]].Equals(argAnswerListCorrect[randomListForQuestions[i]])) correctOption = 2;
                                 break;
                             case 2:
                                 Console.WriteLine($"Option 3: {possibleAnswers[randomList[2]]}\n");
-                                if (possibleAnswers[randomList[2]].Equals(argAnswerListCorrect[i])) correctOption = 3;
+                                if (possibleAnswers[randomList[2]].Equals(argAnswerListCorrect[randomListForQuestions[i]])) correctOption = 3;
                                 break;
                             case 3:
                                 Console.WriteLine($"Option 4: {possibleAnswers[randomList[3]]}\n");
-                                if (possibleAnswers[randomList[3]].Equals(argAnswerListCorrect[i])) correctOption = 4;
+                                if (possibleAnswers[randomList[3]].Equals(argAnswerListCorrect[randomListForQuestions[i]])) correctOption = 4;
                                 break;
                         }
                     }
