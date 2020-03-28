@@ -10,18 +10,18 @@ namespace CSHarpQuizConsole.Engines
     public class PlayGameMethods
     {
         // when adding to this list, always enter item just before EXIT element
-        public static readonly IList<string> gameList = new List<string> { "HTML", "CSS", "JAVASCRIPT", "C#", "ASP.NET", "SQL", "NETWORKING", "EXIT" }.AsReadOnly();
+        public static readonly IList<string> gameList = new List<string> { "HTML", "CSS", "JAVASCRIPT", "C#", "ASP.NET", "SQL", "NETWORKING", "GENERAL", "EXIT" }.AsReadOnly();
+        public static string selectGame = string.Empty;
 
 
-    public void PlayGame(CSharpQuestionAndAnswer argCsharp, GeneralKnowledge argGeneralKnowledge, CalculationEngine calculation)
+        public void PlayGame(CSharpQuestionAndAnswer argCsharp, GeneralKnowledge argGeneralKnowledge, CalculationEngine calculation)
         {
 
-            var selectGame = string.Empty;
             bool exitToMenu = false;
             do
             {
                 Console.WriteLine($"Select the game you wish to play: " +
-                    $"{gameList[0]} {gameList[1]} {gameList[2]} {gameList[3]} {gameList[4]} {gameList[5]} {gameList[6]}. Type {gameList[7]} to return to main menu");
+                    $"{gameList[0]} {gameList[1]} {gameList[2]} {gameList[3]} {gameList[4]} {gameList[5]} {gameList[6]} {gameList[7]}. Type {gameList[8]} to return to main menu");
                 selectGame = Console.ReadLine() ?? string.Empty;
 
                 switch (selectGame.ToUpper())
@@ -47,6 +47,10 @@ namespace CSHarpQuizConsole.Engines
                         break;
                     case "NETWORKING":
                         Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[6]} Game!");
+                        break;
+                    case "GENERAL":
+                        Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[7]}  Game!");
+                        PlayGeneralKnowledgeGame(argGeneralKnowledge, calculation);
                         break;
                     case "EXIT":
                         Console.WriteLine($"{Constants.horizontalRule}Exited Game!");

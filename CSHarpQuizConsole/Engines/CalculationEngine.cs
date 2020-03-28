@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSHarpQuizConsole.Engines;
+using System;
 using System.Collections.Generic;
 
 namespace CSHarpQuizConsole
@@ -17,10 +18,9 @@ namespace CSHarpQuizConsole
                 Random rnd = new Random();
                 int correctOption = 0, mySelectedOption = 0;
                 double score = 0, percentage = 0;
-                
                 string face = string.Empty, grade = string.Empty;
-                // TODO: implement timer feature and hint feature(minus the score by 0.5 if we do)
-                
+                // TODO: implement timer feature
+
                 List<int> randomListForQuestions = new List<int>(); // create empty  list
                 GenerateRandomNumberList(randomListForQuestions, argQuestions.Count); // fill list with random numbers based on size of questions array
 
@@ -28,6 +28,7 @@ namespace CSHarpQuizConsole
                 for (int i = 0; i < argQuestions.Count; i++)
                 {
                     Console.WriteLine($"Question {i + 1}: {argQuestions[randomListForQuestions[i]]}"); // ask a question using the instance of the random list of numbers as the indexer
+                    Console.WriteLine("Enter '000' at any time to exit to the game selection menu"); 
 
                     // creates a list which will be possibly shuffled for each instance, so the answers location is constantly different so the user cannot pickup the pattern
                     List<string> possibleAnswers = new List<string>() { argAnswerListCorrect[randomListForQuestions[i]], argAnswerListIncorrect1[randomListForQuestions[i]],
@@ -64,8 +65,8 @@ namespace CSHarpQuizConsole
                                 break;
                         }
                     }
-
-                    Console.WriteLine("\nWhich Option is correct?\n\n Enter '9' if you are stuck, you will lose 0.5 points\n");
+                    // TODO: Extract method for scoring calculation
+                    Console.WriteLine("\nWhich Option is correct?\n\nEnter '9' if you are stuck, you will lose 0.5 points\n");
 
                     // if possible answer is the correct one then we will increase the score
                     mySelectedOption = ConvertToInteger(Console.ReadLine() ?? string.Empty);
@@ -73,7 +74,7 @@ namespace CSHarpQuizConsole
                     if (mySelectedOption == correctOption)
                     {
                         score++;
-                        Console.WriteLine($"{Constants.horizontalRule}Good work! Your current Score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
+                        Console.WriteLine($"{Constants.horizontalRule}Correct! Your current Score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
                     }
 
                     // if its not the correct option but one of the other options available, incorrect option can only have the values that correct option does not and can only be 1 2 3 or 4
@@ -86,8 +87,13 @@ namespace CSHarpQuizConsole
                         argAnswerListIncorrect3[randomListForQuestions[i]] = string.Empty;
                         score = score - 0.5;
                         i--;
-                        Console.WriteLine($"Two options have been removed to make it easier, your score is now: {score}\n");
+                        Console.WriteLine($"\nTwo options have been removed to make it easier, your score is now: {score}\n");
                         continue;
+                    }
+                    else if (mySelectedOption == 000)
+                    {
+                        i = argQuestions.Count;
+                        Console.WriteLine($"You have exited from the {PlayGameMethods.selectGame.ToUpper()} game");
                     }
                     // if we give an invalid option we just repeat the question
                     else
@@ -117,10 +123,13 @@ namespace CSHarpQuizConsole
                 else if (percentage < 62.5 && percentage >= 59.5) grade = "D-";
                 else if (percentage < 59.5) grade = "F";
 
-                // Present the result (counter) to the user TODO: change int to double to avoid getting 0 error.
-                Console.WriteLine($"{Constants.horizontalRule}{Constants.horizontalRule}" +
-                    $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {percentage}%, Your Grade is: {grade} {face}" +
-                    $"{Constants.horizontalRule}{Constants.horizontalRule}");
+                // if we did not manually exit the game do not print the game over option
+                if (mySelectedOption != 000)
+                {
+                    Console.WriteLine($"{Constants.horizontalRule}{Constants.horizontalRule}" +
+                        $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {percentage}%, Your Grade is: {grade} {face}" +
+                        $"{Constants.horizontalRule}{Constants.horizontalRule}");
+                }
             }
             catch (Exception ex)
             {
