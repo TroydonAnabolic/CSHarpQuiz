@@ -40,7 +40,7 @@ namespace CSHarpQuizConsole
             "execution before any objects are created. And Void is a type modifier that states that the method or variable does not return any value.", //
             "An object is an instance of a class through which we access the methods of that class. 'New' keyword is used to create an object. A class that creates an object in memory will contain the" +
             "information about the methods, variables, and behaviour of that class.", //
-            "A constructor is a member function in a class that has the same name as its class. The constructor is automatically invoked whenever an object of a class is created. It constructs the values of" +
+            "A constructor is a member function in a class that has the same name as its class. The constructor is automatically invoked whenever an object of a class is created. It constructs the values of " +
             "data members while initializing the class.", //
         };
 
@@ -60,10 +60,11 @@ namespace CSHarpQuizConsole
             "execution immediately after objects are created. And Void is a type modifier that states that the method or variable does not return any value.", //
             "An object are used to instantiate classes. 'New' keyword is used to create a class from the object. A object that creates a class in memory will contain the" +
             "information about the methods, variables, and behaviour of that object.", //
-             "A constructor is a member function in a struct that has the same name as its struct. The constructor is automatically invoked whenever an object of a struct is created. It constructs the values of" +
+             "A constructor is a member function in a struct that has the same name as its struct. The constructor is automatically invoked whenever an object of a struct is created. It constructs the values of " +
             "data members while initializing the struct.", //
         };
 
+        // make this list the list that remains when hint is activated
         public List<string> answerListIncorrect2 = new List<string>
         {
             "C# is an object oriented, type safe, and unmanaged language that is directly executed by OS, and is compiled by .NET framework to generate Microsoft Intermediate Language.", //
@@ -100,7 +101,7 @@ namespace CSHarpQuizConsole
             "execution before any objects are created. And Void is a type modifier that states that the method or variable does not return any value.", //
             "An object is an instance of a class through which we access the methods of that class. 'New' keyword is used to create an object. A class that creates an object in memory will not contain the" +
             "information about the methods, variables, and behaviour of that class. We will require to define this during instantiation.", //
-            "A constructor is a member function in a class that has the same name as its class. The constructor is automatically invoked whenever an object of a class is created. It constructs the values of" +
+            "A constructor is a member function in a class that has the same name as its class. The constructor is automatically invoked whenever a method is run. It constructs the values of " +
             "data members while initializing the class.", //
         };
 

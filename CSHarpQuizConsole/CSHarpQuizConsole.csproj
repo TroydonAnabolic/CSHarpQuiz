@@ -43,10 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllQuizzes\MiscellaneousQuizzes\GeneralKnowledge.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="CSharpQuestionAndAnswer.cs" />
+    <Compile Include="AllQuizzes\ProgrammingQuizzes\CSharpQuestionAndAnswer.cs" />
     <Compile Include="Engines\PlayGameMethods.cs" />
-    <Compile Include="HtmlQuestionAndAnswers.cs" />
+    <Compile Include="AllQuizzes\ProgrammingQuizzes\HtmlQuestionAndAnswers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engines\CalculationEngine.cs" />
@@ -55,8 +56,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NetworkingQuizzes\" />
-    <Folder Include="ProgrammingQuizzes\" />
+    <Folder Include="AllQuizzes\NetworkingQuizzes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

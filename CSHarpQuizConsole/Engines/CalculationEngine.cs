@@ -16,14 +16,13 @@ namespace CSHarpQuizConsole
             {
                 Random rnd = new Random();
                 int correctOption = 0, mySelectedOption = 0;
-                decimal score = 0, percentage = 0;
-                HashSet<string> grade = new HashSet<string> { "A-", "A", "A+", "B-", "B", "B+", "C-", "D-", "D", "D+" }; // TO DO: Implement grades based on percentage
-                // create lists of list trings
-                string face = string.Empty;
-                // Ask the question
-                // TODO: Shuffle all questions
-                List<int> randomListForQuestions = new List<int>(); // create empty random list
-                GenerateRandomNumberList(randomListForQuestions, argQuestions.Count); // create a list of random numbers based on size of questions array
+                double score = 0, percentage = 0;
+                
+                string face = string.Empty, grade = string.Empty;
+                // TODO: implement timer feature and hint feature(minus the score by 0.5 if we do)
+                
+                List<int> randomListForQuestions = new List<int>(); // create empty  list
+                GenerateRandomNumberList(randomListForQuestions, argQuestions.Count); // fill list with random numbers based on size of questions array
 
 
                 for (int i = 0; i < argQuestions.Count; i++)
@@ -66,26 +65,61 @@ namespace CSHarpQuizConsole
                         }
                     }
 
-                    Console.WriteLine("\nWhich Option is correct?");
+                    Console.WriteLine("\nWhich Option is correct?\n\n Enter '9' if you are stuck, you will lose 0.5 points\n");
 
                     // if possible answer is the correct one then we will increase the score
-                    mySelectedOption = ConvertToInteger(Console.ReadLine());
+                    mySelectedOption = ConvertToInteger(Console.ReadLine() ?? string.Empty);
                     // each time i select the correct option I am increasing the score
                     if (mySelectedOption == correctOption)
                     {
                         score++;
                         Console.WriteLine($"{Constants.horizontalRule}Good work! Your current Score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
                     }
-                    else Console.WriteLine($"{Constants.horizontalRule}Sorry that is incorrect, your current score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
+
+                    // if its not the correct option but one of the other options available, incorrect option can only have the values that correct option does not and can only be 1 2 3 or 4
+                    else if (mySelectedOption == 1 || mySelectedOption == 2 || mySelectedOption == 3 || mySelectedOption == 4)
+                        Console.WriteLine($"{Constants.horizontalRule}Sorry that is incorrect, your current score is: {score} out of {argQuestions.Count}{Constants.horizontalRule}");
+                    // if the user enters 9, we empty the string value for 2 of the questions and only leave 2 answers
+                    else if (mySelectedOption == 9)
+                    {
+                        argAnswerListIncorrect2[randomListForQuestions[i]] = string.Empty;
+                        argAnswerListIncorrect3[randomListForQuestions[i]] = string.Empty;
+                        score = score - 0.5;
+                        i--;
+                        Console.WriteLine($"Two options have been removed to make it easier, your score is now: {score}\n");
+                        continue;
+                    }
+                    // if we give an invalid option we just repeat the question
+                    else
+                    {
+                        Console.WriteLine("Sorry that is an invalid option, please select a number between 1 2 3 4, if you are unsure, select 9 for a hint, you will loose 0.5 points\n");
+                        i--;
+                        continue;
+                    }
                     // if a user selects
                 }
                 percentage = score / argQuestions.Count * 100;
                 if (percentage > 90) face = ":))";
                 else if (percentage > 50) face = ":)";
                 else face = ":(";
+
+                if (percentage >= 96.50) grade = "A+";
+                else if (percentage < 96.50 && percentage >= 92.5) grade = "A";
+                else if (percentage < 92.5 && percentage >= 89.5) grade = "A-";
+                else if (percentage < 89.5 && percentage >= 86.5) grade = "B+";
+                else if (percentage < 86.5 && percentage >= 82.5) grade = "B";
+                else if (percentage < 82.5 && percentage >= 79.5) grade = "B-";
+                else if (percentage < 79.5 && percentage >= 76.5) grade = "C+";
+                else if (percentage < 76.5 && percentage >= 72.5) grade = "C";
+                else if (percentage < 72.5 && percentage >= 69.5) grade = "C-";
+                else if (percentage < 69.5 && percentage >= 66.5) grade = "D+";
+                else if (percentage < 66.5 && percentage >= 62.5) grade = "D";
+                else if (percentage < 62.5 && percentage >= 59.5) grade = "D-";
+                else if (percentage < 59.5) grade = "F";
+
                 // Present the result (counter) to the user TODO: change int to double to avoid getting 0 error.
                 Console.WriteLine($"{Constants.horizontalRule}{Constants.horizontalRule}" +
-                    $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {percentage}% {face}" +
+                    $"Game Over! Your final Score is: {score} out of {argQuestions.Count}! Your achieved a mark of {percentage}%, Your Grade is: {grade} {face}" +
                     $"{Constants.horizontalRule}{Constants.horizontalRule}");
             }
             catch (Exception ex)

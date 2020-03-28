@@ -1,9 +1,6 @@
-﻿using CSHarpQuizConsole.Engines;
+﻿using CSHarpQuizConsole.AllQuizzes.MiscellaneousQuizzes;
+using CSHarpQuizConsole.Engines;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSHarpQuizConsole
 {
@@ -14,9 +11,10 @@ namespace CSHarpQuizConsole
         {
             try
             {
-                CSharpQuestionAndAnswer cSharpQuestionAndAnswer = new CSharpQuestionAndAnswer();
                 CalculationEngine calculation = new CalculationEngine();
                 PlayGameMethods playGameMethods = new PlayGameMethods();
+                CSharpQuestionAndAnswer cSharpQuestionAndAnswer = new CSharpQuestionAndAnswer();
+                GeneralKnowledge generalKnowledge = new GeneralKnowledge();
                 bool continueQuizGames = false;
                 do
                 {
@@ -26,7 +24,7 @@ namespace CSHarpQuizConsole
 
                     if (shouldPlay.Equals("Y", StringComparison.OrdinalIgnoreCase))
                     {
-                        playGameMethods.PlayGame(cSharpQuestionAndAnswer, calculation);
+                        playGameMethods.PlayGame(cSharpQuestionAndAnswer, generalKnowledge, calculation);
                         continueQuizGames = true;
                     }
                     // Immediately exit app if we do not want to continue

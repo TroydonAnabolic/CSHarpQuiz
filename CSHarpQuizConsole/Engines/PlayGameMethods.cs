@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSHarpQuizConsole.AllQuizzes.MiscellaneousQuizzes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,11 @@ namespace CSHarpQuizConsole.Engines
 {
     public class PlayGameMethods
     {
+        // when adding to this list, always enter item just before EXIT element
         public static readonly IList<string> gameList = new List<string> { "HTML", "CSS", "JAVASCRIPT", "C#", "ASP.NET", "SQL", "NETWORKING", "EXIT" }.AsReadOnly();
 
 
-    public void PlayGame(CSharpQuestionAndAnswer cSharpQuestionAndAnswer, CalculationEngine calculation)
+    public void PlayGame(CSharpQuestionAndAnswer argCsharp, GeneralKnowledge argGeneralKnowledge, CalculationEngine calculation)
         {
 
             var selectGame = string.Empty;
@@ -35,7 +37,7 @@ namespace CSHarpQuizConsole.Engines
                         break;
                     case "C#":
                         Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[3]} Game!");
-                        PlayCsharpGame(cSharpQuestionAndAnswer, calculation);
+                        PlayCsharpGame(argCsharp, calculation);
                         break;
                     case "ASP.NET":
                         Console.WriteLine($"{Constants.horizontalRule}Welcome to the {gameList[4]} Game!");
@@ -51,18 +53,25 @@ namespace CSHarpQuizConsole.Engines
                         exitToMenu = true;
                         break;
                     default:
-                        Console.WriteLine("{Constants.horizontalRule}Cannot find game with that name, please check it is on the list, and is spelt correctly");
+                        Console.WriteLine($"{Constants.horizontalRule}Cannot find game with that name, please check it is on the list, and is spelt correctly");
                         break;
                 }
 
             } while (!exitToMenu);
         }
 
-        public static void PlayCsharpGame(CSharpQuestionAndAnswer cSharpQuestionAndAnswer, CalculationEngine calculation)
+        public static void PlayCsharpGame(CSharpQuestionAndAnswer argCsharp, CalculationEngine calculation)
         {
             // apply C# calculations
-            calculation.CalculateScore(cSharpQuestionAndAnswer.questionsList, cSharpQuestionAndAnswer.answerListCorrect,
-                cSharpQuestionAndAnswer.answerListIncorrect1, cSharpQuestionAndAnswer.answerListIncorrect2, cSharpQuestionAndAnswer.answerListIncorrect3);
+            calculation.CalculateScore(argCsharp.questionsList, argCsharp.answerListCorrect,
+                argCsharp.answerListIncorrect1, argCsharp.answerListIncorrect2, argCsharp.answerListIncorrect3);
+        }
+
+        public static void PlayGeneralKnowledgeGame(GeneralKnowledge argGeneralKnowledge, CalculationEngine calculation)
+        {
+            // apply C# calculations
+            calculation.CalculateScore(argGeneralKnowledge.questionsList, argGeneralKnowledge.answerListCorrect,
+                argGeneralKnowledge.answerListIncorrect1, argGeneralKnowledge.answerListIncorrect2, argGeneralKnowledge.answerListIncorrect3);
         }
     }
 }
